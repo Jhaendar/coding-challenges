@@ -16,7 +16,13 @@ def parse_game_file(filename) -> dict[int, dict[str, int]]:
 
 def parse_game(line: str) -> tuple[int, dict[str, int]]:
     game_part, *draws = re.split(":|;|, ", line)
-    game_number = int(re.search(r"Game (\d+)", game_part)[1])
+
+    game_number_match = re.search(r"Game (\d+)", game_part)
+
+    if game_number_match:
+        game_number = int(game_number_match[1])
+    else:
+        raise ValueError(f"No game number found: {line}")
 
     max_colors: dict[str, int] = {"red": 0, "blue": 0, "green": 0}
     for draw in draws:

@@ -22,7 +22,7 @@ class Hand:
         "High card": 0,
     }
 
-    HandTypeMapping = {
+    HandTypeMapping: dict[tuple[tuple[int, ...], int], int] = {
         ((5,), 0): HandTypes["Five of a kind"],
         ((), 5): HandTypes["Five of a kind"],
         ((1, 4), 0): HandTypes["Four of a kind"],

@@ -27,8 +27,8 @@ def parse_card(line: str) -> dict[int, Card]:
     card_part, winner, draw = re.split(pattern, line)
     card_number = get_card_name(card_part)
 
-    winner = set(winner.split())
-    draw = set(draw.split())
+    winner = {int(x) for x in winner.split()}
+    draw = {int(x) for x in draw.split()}
 
     intersection = winner & draw
     wins = len(intersection)
@@ -37,11 +37,13 @@ def parse_card(line: str) -> dict[int, Card]:
     else:
         points = 2 ** (wins - 1)
 
-    card[card_number] = {
+    card_info: Card = {
         "winner": list(winner),
         "draw": list(draw),
         "info": [points, wins, 1],  # points, wins, number of cards
     }
+
+    card[card_number] = card_info
 
     return card
 

@@ -25,13 +25,14 @@ def parse_file(
             # PART 1
             seeds = [range(int(x), int(x) + 1) for x in seed_line]
 
+        current_mapping: MappingsList = list()
         for line in file:
             if line == "\n":
                 continue
 
             if ":" in line:
-                current_mapping: MappingsList = list()
-                mappings.append(current_mapping)
+                mappings.append(list())
+                current_mapping = mappings[-1]
                 continue
 
             dest, source, step = [int(x) for x in line.split()]

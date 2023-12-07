@@ -3,6 +3,9 @@ from typing import Optional
 
 
 def parse_file(filename: str, part: Optional[int] = 2) -> dict[str, list[int]]:
+    times: list[int] = list()
+    records: list[int] = list()
+
     with open(filename, "r") as file:
         if part == 1:
             times = [int(x) for x in file.readline().split()[1:]]
