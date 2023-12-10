@@ -160,3 +160,4 @@ cython_debug/
 #.idea/
 
 .vscode
+advent-of-code/2023/*/*_input*
